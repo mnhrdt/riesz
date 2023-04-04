@@ -1,0 +1,144 @@
+\documentclass[t]{beamer}
+\usepackage[utf8]{inputenc}  % to be able to type unicode text directly
+\usepackage{inconsolata}     % for a nicer (e.g. non-courier) tt family font
+\usepackage{array}           % to fine-tune tabular spacing
+\usepackage{bbm}             % for blackboard 1
+\usepackage{graphicx}        % to include images
+%\usepackage{animate}         % to include animated images
+\usepackage{soul}            % for colored strikethrough
+%\usepackage{bbding}          % for Checkmark and XSolidBrush
+\usepackage{hyperref,url}
+
+\colorlet{darkgreen}{black!50!green}  % used for page numbers
+\definecolor{term}{rgb}{.9,.9,.9}     % used for code insets
+
+\setlength{\parindent}{0em}  % no paragraph indentation
+\setlength{\parskip}{1em}    % paragraph spacing
+
+
+% coco's macros
+\def\R{\mathbf{R}}
+\def\F{\mathcal{F}}
+\def\x{\mathbf{x}}
+\def\y{\mathbf{y}}
+\def\u{\mathbf{u}}
+\def\Z{\textbf{Z}}
+\def\d{\mathrm{d}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\newcommand{\reference}[1] {{\scriptsize \color{gray}  #1 }}
+\newcommand{\referencep}[1] {{\tiny \color{gray}  #1 }}
+\newcommand{\unit}[1] {{\tiny \color{gray}  #1 }}
+
+% disable spacing around verbatim
+\usepackage{etoolbox}
+\makeatletter\preto{\@verbatim}{\topsep=0pt \partopsep=0pt }\makeatother
+
+% disable headings, set slide numbers in green
+\mode<all>\setbeamertemplate{navigation symbols}{}
+\defbeamertemplate*{footline}{pagecount}{\leavevmode\hfill\color{darkgreen}
+   \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}\vskip0pt}
+
+%% select red color for strikethrough
+\makeatletter
+\newcommand\SoulColor{%
+  \let\set@color\beamerorig@set@color
+  \let\reset@color\beamerorig@reset@color}
+\makeatother
+\newcommand<>{\St}[1]{\only#2{\SoulColor\st{#1}}}
+\setstcolor{red}
+
+% make everything monospace
+\renewcommand*\familydefault{\ttdefault}
+
+
+
+
+
+\begin{document}
+
+
+\addtocounter{framenumber}{-1}
+\begin{frame}[plain,fragile]
+\Large
+\begin{verbatim}
+
+
+
+
+
+
+  the Riesz semigroup in image processing
+
+
+
+
+
+
+mnhrdt
+gtti 6/4/2023
+\end{verbatim}
+\end{frame}
+
+\end{document}
+
+
+% intro 1 newton vs. others
+
+% intro 2 gaussian kernel vs. riesz kernel
+
+% why is the gaussian kernel great (laplace quote)
+
+% snapshot (fake clouds)
+
+% plan
+% 1. definition and properties of the Riesz semigroup
+% 2. comparison with the Gaussian semigroup
+% 3. applications
+% 3.1. retinex
+% 3.2. differentiable poisson editing
+% 3.3. shepard interpolation
+% 3.4. cloud simulation
+
+% definition and visualization, side by side
+
+% fractional derivatives (as from wikipedia)
+% [note: riesz kernel are fractional derivatives in dimension 2]
+% https://en.wikipedia.org/wiki/Riemann%E2%80%93Liouville_integral
+
+% recall properties of fourier transform
+
+% definition in the spectral domain (by means of symmetries)
+
+% continuous interpolation between laplacian, retinex, image, blurry image
+
+% commutation with zoom
+
+% closely related construction: riesz potentials, riesz transform
+% https://en.wikipedia.org/wiki/Riesz_potential
+% https://en.wikipedia.org/wiki/Riesz_transform
+
+% the Land kernel (particular case for σ=1)
+
+% implementation: imscript (with fft), imscript (with blur), python
+
+% comparison table gauss/riesz/land
+
+
+% 3. applications
+
+% 3.1. multi-scale retinex (three-gaussians shit, are an approximation of land)
+
+% 3.2. - antilaplacian = land * land
+
+% 3.3. shepard interpolation
+% https://en.wikipedia.org/wiki/Inverse_distance_weighting
+
+% 3.4. sobolev fractals, cloud simulation, other textures
+
+% conclusion: links to slides, imscript, python function
+
+\end{document}
+
+
+% vim:sw=2 ts=2 spell spelllang=en:
