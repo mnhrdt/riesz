@@ -4,12 +4,15 @@
 \usepackage{array}           % to fine-tune tabular spacing
 \usepackage{bbm}             % for blackboard 1
 \usepackage{graphicx}        % to include images
+\usepackage{graphbox}       % to fine-tune image alignment
 %\usepackage{animate}         % to include animated images
 \usepackage{soul}            % for colored strikethrough
 %\usepackage{bbding}          % for Checkmark and XSolidBrush
 \usepackage{hyperref,url}
 
 \colorlet{darkgreen}{black!50!green}  % used for page numbers
+\colorlet{darkred}{black!50!red}  % used for page numbers
+\colorlet{darkblue}{black!30!blue}  % used for page numbers
 \colorlet{lightblue}{white!50!blue}  % used for page numbers
 \definecolor{term}{rgb}{.9,.9,.9}     % used for code insets
 
@@ -39,7 +42,7 @@
 % disable headings, set slide numbers in green
 \mode<all>\setbeamertemplate{navigation symbols}{}
 \defbeamertemplate*{footline}{pagecount}{\leavevmode\hfill\color{darkgreen}
-   \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}\vskip0pt}
+   \insertframenumber{} / \inserttotalframenumber\hspace*{0ex}\vskip0pt}
 
 %% select red color for strikethrough
 \makeatletter
@@ -119,36 +122,85 @@ INTRO\\
 
 {\bf Question:}
 %\\
-What is the best convolution kernel?
-
+What is the best convolution kernel?\\
 \pause
 {\bf Answer:}
 Easy! The Gaussian kernels
-\[
-	\color{blue}
+%\[
+%	\color{darkblue}
+%	G_\sigma(x,y)\ =\  {\color{lightblue}\frac1{2\pi\sigma^2}} \exp\frac{-(x^2+y^2)}{2\sigma^2}
+%	\pause
+%	\ =\  {\color{lightblue}\frac1{\sigma^d\sqrt{2\pi}^d}}
+%	\exp\frac{-\Abs{\vec x}^2}{2\sigma^2}
+%\]
+\begin{tabular}{ll}
+	\fbox{
+		\(\displaystyle\color{darkblue}
 	G_\sigma(x,y)\ =\  {\color{lightblue}\frac1{2\pi\sigma^2}} \exp\frac{-(x^2+y^2)}{2\sigma^2}
-	\pause
-	\ =\  {\color{lightblue}\frac1{\sigma^d\sqrt{2\pi}^d}}
-	\exp\frac{-\Abs{\vec x}^2}{2\sigma^2}
-\]
+		\)
+	}&
+	\includegraphics[align=c,width=0.29\textwidth]{f/shot_gauss.png}
+\end{tabular}
 
 \pause
-\vfill
+%\vfill
 
 {\bf Question:}
-What is the second-best convolution kernel?
-
+What is the second-best convolution kernel?\\
 \pause
 {\bf Answer:}
 Easy! The Riesz potentials:
-\[
-	\color{blue}
-	R_\sigma(x,y)\ =\  {\color{lightblue}k_\sigma}
+%\[
+%	\color{darkred}
+%	R_\sigma(x,y)\ =\  {\color{pink}k_\sigma}
+%	\left(x^2+y^2\right)^{\frac{\sigma-2}2}
+%	\pause
+%	\ =\  {\color{pink}k_\sigma}
+%	\frac1{\Abs{\vec x}^{d-\sigma}}
+%\]
+\begin{tabular}{ll}
+	\fbox{
+		\(\displaystyle\color{darkred}
+	R_\sigma(x,y)\ =\  {\color{pink}k_\sigma}
 	\left(x^2+y^2\right)^{\frac{\sigma-2}2}
-	\pause
-	\ =\  {\color{lightblue}k_\sigma}
-	\frac1{\Abs{\vec x}^{d-\sigma}}
-\]
+		\)
+	}&
+	\includegraphics[align=c,width=0.29\textwidth]{f/shot_land.png}
+\end{tabular}
+\pause
+
+%SCRIPT blur g 1 f/x.png o/x_g1.png
+%SCRIPT blur g 15 f/x.png o/x_g15.png
+%SCRIPT blur g 60 f/x.png o/x_g60.png
+%SCRIPT fft 1 f/x.png|plambda ':R 1 ^ /'|ifft|qauto -i -p 0.1 - o/x_r1.png
+%SCRIPT fft 1 f/x.png|plambda ':R 2 ^ /'|ifft|qauto -i -p 0.1 - o/x_r2.png
+%SCRIPT fft 1 f/x.png|plambda ':R 3 ^ /'|ifft|qauto -i -p 0.1 - o/x_r3.png
+%SCRIPT fft 1 f/x.png|plambda ':R -0.5 ^ /'|ifft|qauto -i -p 5 - o/x_rm05.png
+%SCRIPT fft 1 f/x.png|plambda ':R -1 ^ /'|ifft|qauto -i -p 5 - o/x_rm1.png
+
+\vspace{-1.5em}
+\begin{center}
+	\setlength{\tabcolsep}{1pt}
+	\renewcommand{\arraystretch}{0.5}
+	\begin{tabular}{ccccccc}
+		\scriptsize $u$ &
+		\scriptsize ${\color{darkblue}G_5} * u$ &
+		\scriptsize ${\color{darkblue}G_{15}} * u$ &
+		\scriptsize ${\color{darkblue}G_{60}} * u$ &
+		\scriptsize ${\color{darkred}R_1} * u$ &
+		\scriptsize ${\color{darkred}R_2} * u$ &
+		\scriptsize ${\color{darkred}R_3} * u$ \\
+		\includegraphics[width=0.14\textwidth]{f/x.png}&
+		\includegraphics[width=0.14\textwidth]{o/x_g5.png}&
+		\includegraphics[width=0.14\textwidth]{o/x_g15.png}&
+		\includegraphics[width=0.14\textwidth]{o/x_g60.png}&
+		\includegraphics[width=0.14\textwidth]{o/x_r1.png}&
+		%\includegraphics[width=0.14\textwidth]{o/x_rm05.png}&
+		%\includegraphics[width=0.14\textwidth]{o/x_rm1.png}\\
+		\includegraphics[width=0.14\textwidth]{o/x_r2.png}&
+		\includegraphics[width=0.14\textwidth]{o/x_r3.png}\\
+	\end{tabular}
+\end{center}
 
 \end{frame}
 
