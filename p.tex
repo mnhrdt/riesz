@@ -10,6 +10,7 @@
 \usepackage{hyperref,url}
 
 \colorlet{darkgreen}{black!50!green}  % used for page numbers
+\colorlet{lightblue}{white!50!blue}  % used for page numbers
 \definecolor{term}{rgb}{.9,.9,.9}     % used for code insets
 
 \setlength{\parindent}{0em}  % no paragraph indentation
@@ -24,6 +25,7 @@
 \def\u{\mathbf{u}}
 \def\Z{\textbf{Z}}
 \def\d{\mathrm{d}}
+\newcommand{\Abs}[1]{\left\| #1 \right\|}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
 \newcommand{\reference}[1] {{\scriptsize \color{gray}  #1 }}
@@ -87,12 +89,62 @@ gtti 6/4/2023
 INTRO\\
 =====
 
+{\bf Question:}
+Who is the best scientist of all time?
+
+\pause
+{\bf Answer:}
+Easy! It's Isaac Newton
+
+\pause
+\vfill
+
+{\bf Question:}
+Who is the {\color{blue} second-best} scientist of all time?
+
+\pause
+{\bf Answer:}
+Hmmm...
+
 \end{frame}
 
 % intro 2 gaussian kernel vs. riesz kernel
 \begin{frame}
 INTRO\\
 =====
+
+{\bf Question:}
+%\\
+What is the best convolution kernel?
+
+\pause
+{\bf Answer:}
+Easy! The Gaussian kernels
+\[
+	\color{blue}
+	G_\sigma(x,y)\ =\  {\color{lightblue}c_\sigma} \exp\frac{-(x^2+y^2)}{2\sigma^2}
+	\pause
+	\ =\  {\color{lightblue}c_\sigma}
+	\exp\frac{-\Abs{\vec x}^2}{2\sigma^2}
+\]
+
+\pause
+\vfill
+
+{\bf Question:}
+What is the second-best convolution kernel?
+
+\pause
+{\bf Answer:}
+Easy! The Riesz potentials:
+\[
+	\color{blue}
+	R_\sigma(x,y)\ =\  {\color{lightblue}k_\sigma}
+	\left(x^2+y^2\right)^{\frac{\sigma-2}2}
+	\pause
+	\ =\  {\color{lightblue}k_\sigma}
+	\frac1{\Abs{\vec x}^{d-\sigma}}
+\]
 
 \end{frame}
 
@@ -124,6 +176,17 @@ SOME LIMITATIONS OF THE GAUSSIAN KERNEL\\
 \begin{frame}
 OUTLINE\\
 =======
+
+1. Definition and properties of~$R_\sigma$ {\color{gray}(Riesz semigroup)}
+
+2. Comparison with~$G_\sigma$ {\color{gray}(Gaussian semigroup)}
+
+3. Applications in image processing\\
+\color{gray}
+$\quad$ 3.1. Really multi-scale Retinex\\
+$\quad$ 3.2. Differentiable Poisson editing\\
+$\quad$ 3.3. Inverse Distance Weighted interpolation\\
+$\quad$ 3.4. Cloud simulation
 
 \end{frame}
 
