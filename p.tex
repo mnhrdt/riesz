@@ -125,7 +125,7 @@ INTRO\\
 What is the best convolution kernel?\\
 \pause
 {\bf Answer:}
-Easy! The Gaussian kernels
+	Easy! {\color{darkblue}The Gaussian kernels}
 %\[
 %	\color{darkblue}
 %	G_\sigma(x,y)\ =\  {\color{lightblue}\frac1{2\pi\sigma^2}} \exp\frac{-(x^2+y^2)}{2\sigma^2}
@@ -149,19 +149,19 @@ Easy! The Gaussian kernels
 What is the second-best convolution kernel?\\
 \pause
 {\bf Answer:}
-Easy! The Riesz potentials:
+	Easy! {\color{darkred}The Riesz potentials}
 %\[
 %	\color{darkred}
-%	R_\sigma(x,y)\ =\  {\color{pink}k_\sigma}
-%	\left(x^2+y^2\right)^{\frac{\sigma-2}2}
+%	R_\alpha(x,y)\ =\  {\color{pink}k_\alpha}
+%	\left(x^2+y^2\right)^{\frac{\alpha-2}2}
 %	\pause
-%	\ =\  {\color{pink}k_\sigma}
-%	\frac1{\Abs{\vec x}^{d-\sigma}}
+%	\ =\  {\color{pink}k_\alpha}
+%	\frac1{\Abs{\vec x}^{d-\alpha}}
 %\]
 \begin{tabular}{ll}
 	\fbox{
 		\(\displaystyle\color{darkred}
-	R_\sigma(x,y)\ =\  {\color{pink}k_\sigma}
+	R_\alpha(x,y)\ =\  {\color{pink}k_\alpha}
 	\left(x^2+y^2\right)^{\frac{\sigma-2}2}
 		\)
 	}&
@@ -169,7 +169,7 @@ Easy! The Riesz potentials:
 \end{tabular}
 \pause
 
-%SCRIPT blur g 1 f/x.png o/x_g1.png
+%SCRIPT blur g 5 f/x.png o/x_g5.png
 %SCRIPT blur g 15 f/x.png o/x_g15.png
 %SCRIPT blur g 60 f/x.png o/x_g60.png
 %SCRIPT fft 1 f/x.png|plambda ':R 1 ^ /'|ifft|qauto -i -p 0.1 - o/x_r1.png
@@ -177,6 +177,7 @@ Easy! The Riesz potentials:
 %SCRIPT fft 1 f/x.png|plambda ':R 3 ^ /'|ifft|qauto -i -p 0.1 - o/x_r3.png
 %SCRIPT fft 1 f/x.png|plambda ':R -0.5 ^ /'|ifft|qauto -i -p 5 - o/x_rm05.png
 %SCRIPT fft 1 f/x.png|plambda ':R -1 ^ /'|ifft|qauto -i -p 5 - o/x_rm1.png
+%SCRIPT fft 1 f/x.png|plambda ':R -2 ^ /'|ifft|qauto -i -p 5 - o/x_rm2.png
 
 \vspace{-1.5em}
 \begin{center}
@@ -210,6 +211,37 @@ Easy! The Riesz potentials:
 WHY IS THE GAUSSIAN KERNEL SO NATURAL\\
 =====================================
 
+	{\bf Statistics:} The Central Limit theorem\\
+	%Iterating positive linear filters has the same effect as convolving with a Gaussian
+	{\color{darkblue} A deep CNN with positive weights does a Gaussian blur.}
+
+
+	\pause
+	{\bf Analysis:} The heat equation {\small
+	$\begin{cases}\frac{\partial}{\partial t}u
+	=\Delta u&\\u(x,0)\!=\!f(x)\end{cases}\!\!\!\!\!\!\implies\!\!u(x,t)\!=\!{\color{darkblue}G_t}*f$}
+
+	\pause
+	{\bf Geometry:} (Herschel 1850, Maxwell 1860)\\
+	The only densities that are radial and separable
+	are~$\color{darkblue}G_\sigma$:\\
+	If
+	\(\small\begin{cases}
+		G(x,y)=G(\sqrt{x^2+y^2},0)\\
+		G(x,y)=g(x)g(y)
+	\end{cases}\)
+	\hspace{-1em}then
+	%$g(x)g(y)=g\left(\sqrt{x^2+y^2}\right)g(0)$ and thus
+	$\exists\alpha,\beta>0$:
+	$\color{darkblue}g(x)=\alpha e^{-\beta x^2}$.
+
+	\begin{tabular}{llll}
+		\includegraphics[height=0.26\textheight]{f/john_herschel2.jpg}&
+		\includegraphics[height=0.26\textheight]{f/john_herschel3.jpg}&
+		\includegraphics[height=0.26\textheight]{f/john_herschel1.jpg}&
+		\includegraphics[height=0.26\textheight]{f/herschel_darwin.jpg}
+	\end{tabular}
+
 \end{frame}
 
 
@@ -218,7 +250,26 @@ WHY IS THE GAUSSIAN KERNEL SO NATURAL\\
 SOME LIMITATIONS OF THE GAUSSIAN KERNEL\\
 =======================================
 
+	{\bf Non reversible:} You cannot recover~$f$
+	from~${\color{darkblue}G_\sigma} *f$
+
+	\pause
+	{\color{darkred}
+	For Riesz kernels, however: $R_\alpha*R_\beta = R_{\alpha+\beta}\ \ $ \fbox{\color{darkred}$\forall\alpha,\beta\in\textbf{R}$}
+	}
+
+	\pause
+	{\bf It just blurs at a single scale:}\\
+	\scriptsize\vspace{0.3em} \begin{tabular}{cc}
+		\includegraphics[height=0.48\textwidth]{o/cloud_gauss.png}&
+		\includegraphics[height=0.48\textwidth]{o/cloud_riesz.png}\\
+		Gaussian clouds ($\color{darkblue}\sigma=60$) &
+		Riesz clouds ($\color{darkred}\alpha=1.6$) \\
+	\end{tabular}
 \end{frame}
+
+%SCRIPT plambda f/calanques.jpg randu|fft|plambda ":R 1.6 ^ /"|ifft|plambda - "x x%q90 - x%a x%i - / 45 * atan pi / 2 * 255 *" -o o/cloud_riesz.png
+%SCRIPT plambda f/calanques.jpg randu|blur g 40|plambda - "x x%q90 - x%a x%i - / 45 * atan pi / 2 * 255 *" -o o/cloud_gauss.png
 
 
 % plan
@@ -233,9 +284,9 @@ SOME LIMITATIONS OF THE GAUSSIAN KERNEL\\
 OUTLINE\\
 =======
 
-1. Definition and properties of~$R_\sigma$ {\color{gray}(Riesz semigroup)}
+	1. Definition and properties of~$\color{darkred}R_\alpha$ {\color{gray}(Riesz semigroup)}
 
-2. Comparison with~$G_\sigma$ {\color{gray}(Gaussian semigroup)}
+	2. Comparison with~$\color{darkblue}G_\sigma$ {\color{gray}(Gaussian semigroup)}
 
 3. Applications in image processing\\
 \color{gray}
@@ -251,6 +302,43 @@ $\quad$ 3.4. Cloud simulation
 \begin{frame}
 DEFINITION OF THE RIESZ KERNEL\\
 ==============================
+
+%	{\bf Definition:}
+	\fbox{
+	\(\displaystyle
+\color{darkred}
+R_\alpha(x,y)\ =\  {\color{pink}k_\alpha}
+	\left(x^2+y^2\right)^{\frac{\alpha-2}2}
+	\pause
+	\ =\  {\color{pink}k_\alpha}
+	\frac1{\Abs{\vec x}^{d-\alpha}}
+	\)}
+$\color{darkred}\ \ \forall\alpha\in\textbf{R}$
+
+%{\small
+%	For~$\alpha\in\mathbf{R}$, $\color{darkred}R_\alpha$ acts over
+%	\ul{images of zero mean} by convolution
+%}
+
+\begin{center}
+	\setlength{\tabcolsep}{1pt}
+	\renewcommand{\arraystretch}{0.5}
+	\begin{tabular}{ccc}
+		\includegraphics[width=0.24\textwidth]{o/x_rm2.png}&
+		\includegraphics[width=0.24\textwidth]{o/x_rm1.png}&
+		\includegraphics[width=0.24\textwidth]{o/x_rm05.png}\\
+		\scriptsize ${\color{darkred}R_{-2}} * u=-\Delta u$ &
+		\scriptsize ${\color{darkred}R_{-1}} * u$ &
+		\scriptsize ${\color{darkred}R_{-0.5}} * u$ \\
+		&&\\
+		\includegraphics[width=0.24\textwidth]{f/x.png}&
+		\includegraphics[width=0.24\textwidth]{o/x_r1.png}&
+		\includegraphics[width=0.24\textwidth]{o/x_r2.png}\\
+		\scriptsize ${\color{darkred}R_0} * u = u$ &
+		\scriptsize ${\color{darkred}R_1} * u$ &
+		\scriptsize ${\color{darkred}R_2} * u = -\Delta^{-1} u$ \\
+	\end{tabular}
+\end{center}
 
 \end{frame}
 
