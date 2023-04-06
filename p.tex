@@ -440,17 +440,48 @@ SPECTRUM OF THE RIESZ POTENTIAL\\
 	$\color{darkred}R_\alpha$ is the ``Fourier multiplier''
 	%with spectrum
 	\begin{center}
-	\fbox{$\ds\color{darkred}\widehat{\R_\alpha}(\y)=\frac1{\Abs{\y}^\alpha}$}
+	\fbox{$\ds\color{darkred}\widehat{R_\alpha}(\y)=\frac1{\Abs{\y}^\alpha}$}
 	\end{center}
 
 	{\bf Formal properties: } (now elementary)\\
 	$$\color{darkred}R_\alpha* R_\beta = R_{\alpha+\beta}$$
-	$$\color{darkred}R_{-2} = \Delta$$
-	$$\color{darkred}R_{2} = \Delta^{-1}$$
+	$$\color{darkred}R_{-2} = \Delta
+	\qquad
+	\qquad
+	\color{darkred}R_0 = \delta
+	\qquad
+	\qquad
+	\color{darkred}R_{2} = \Delta^{-1}$$
 
 
 \end{frame}
 
+% fixed points
+\begin{frame}
+CURIOSITY: FIXED POINTS OF THE FOURIER TRANSFORM\\
+================================================
+
+{\bf d=1:} $\ds \frac1{\sqrt{\abs{x}}}$
+
+{\bf d=2:} $\ds\color{darkred}\frac1{\sqrt{x^2+y^2}}\qquad\qquad$
+{\color{gray} (Land kernel)}
+
+{\bf d=3:} $\ds \frac1{\sqrt{x^2+y^2+z^2}^3}\qquad$
+{\color{gray} (Newtonian potential)}
+
+{\bf d=4:} $\ds \frac1{x^2+y^2+z^2+t^2}$
+
+\vfill
+
+Proof:
+$\widehat{\Abs{\x}^s} \propto  \Abs{\y}^{-d-s}
+\qquad
+\qquad
+s=-d-s\iff s=-d/2
+$
+
+
+\end{frame}
 
 % commutation with zoom
 \begin{frame}
