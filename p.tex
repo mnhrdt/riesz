@@ -4,8 +4,8 @@
 \usepackage{array}           % to fine-tune tabular spacing
 \usepackage{bbm}             % for blackboard 1
 \usepackage{graphicx}        % to include images
-\usepackage{graphbox}       % to fine-tune image alignment
-%\usepackage{animate}         % to include animated images
+\usepackage{graphbox}        % to fine-tune image alignment
+\usepackage{animate}         % to include animated images
 \usepackage{soul}            % for colored strikethrough
 %\usepackage{bbding}          % for Checkmark and XSolidBrush
 \usepackage{hyperref,url}
@@ -21,13 +21,16 @@
 
 
 % coco's macros
-\def\R{\mathbf{R}}
+\def\ds{\displaystyle}
+\def\R{\textbf{R}}
 \def\F{\mathcal{F}}
-\def\x{\mathbf{x}}
-\def\y{\mathbf{y}}
+\def\x{\textbf{x}}
+\def\y{\textbf{y}}
 \def\u{\mathbf{u}}
 \def\Z{\textbf{Z}}
 \def\d{\mathrm{d}}
+\def\ud{\mathrm{d}}
+\newcommand{\abs}[1]{\left| #1 \right|}
 \newcommand{\Abs}[1]{\left\| #1 \right\|}
 \DeclareMathOperator*{\argmin}{arg\,min}
 \DeclareMathOperator*{\argmax}{arg\,max}
@@ -350,6 +353,25 @@ $\color{darkred}\ \ \forall\alpha\in\textbf{R}$
 FRACTIONAL DERIVATIVES\\
 ======================
 
+	{\bf Definition: }(Riemann-Liouville integral)
+	\[
+		I^\alpha f(x)=\frac1{\Gamma(\alpha)}\int^xf(t)(x-t)^{\alpha -1}\ud t
+		\]
+	{\bf Properties:} {\color{gray}(elementary)}
+	\[
+		I^1 f = \int f
+		\qquad
+		\qquad
+		\frac{\ud}{\ud x}I^{\alpha+1} f(x)=I^\alpha f
+		\qquad
+		\qquad
+		I^\alpha I^\beta = I^{\alpha+\beta}
+		\]
+
+		Extending~$I^\alpha$ for~$\alpha\in\textbf{R}$ we get a continuous interpolation between derivatives and integrals.
+
+\animategraphics[autoplay,loop,width=0.3\linewidth]{10}{f/a/fracdev-}{0}{75}
+
 \end{frame}
 
 
@@ -358,6 +380,50 @@ FRACTIONAL DERIVATIVES\\
 PROPERTIES OF THE FOURIER TRANSFORM\\
 ===================================
 
+For~$f:\R^d\to\R$ define~\fbox{$\ds\widehat
+	f(\y)=\int_{\R^d} f(\x)e^{-i\x\cdot\y}\ud \x$}
+
+{\bf Properties:}
+	(1) $\ds\widehat{\frac{\partial }{\partial x_k}f} (\y)= iy_k\widehat{f}(\y)$
+
+	(2) If~$f$ is~$\sigma$-homogeneous then~$\widehat f$ is~$(-d-\sigma)$-homogeneous.\\
+	{\color{gray}\small
+	$f(\lambda\x)=\lambda^\sigma f(\x)\ \forall\lambda>0\ \implies\ %
+	\widehat{f}(\lambda\y)=\lambda^{-d-\sigma}\widehat{f}(\y)\ \forall\lambda>0$
+	}
+
+	(3) If~$f$ is radial then~$\widehat f$ is radial.
+
+	\pause
+	{\bf Corollary:}
+	$\widehat{\color{darkred}R_\alpha} \propto \color{darkred}R_{d-\alpha}$\\
+	{\small\color{gray}{\bf Proof:}~$R_\alpha(\x)=\Abs{\x}^{\alpha-d}$ is
+	radial and~$(\alpha-d)$-homogeneous.}
+
+	\pause
+	{\bf Caveats:}
+	Non-integrability, Diracs at the origin, ...
+
+\end{frame}
+
+%
+\begin{frame}
+TECHNICAL DETAILS (\only<1>{1}\only<2>{2}/2)\\
+=======================
+
+\only<1>{
+\begin{tabular}{ll}
+	\includegraphics[height=0.8\textheight]{f/kellog.jpg}&
+	\includegraphics[height=0.8\textheight]{f/hormander.png}\\
+\end{tabular}}\only<2>{
+\includegraphics[width=0.6\textwidth]{f/jaffe1.png}\\
+	\vspace{-1em}
+. . .
+
+\includegraphics[width=0.95\textwidth]{f/jaffe2.png}
+}
+
+
 \end{frame}
 
 
@@ -365,6 +431,23 @@ PROPERTIES OF THE FOURIER TRANSFORM\\
 \begin{frame}
 SPECTRUM OF THE RIESZ POTENTIAL\\
 ===============================
+
+	{\bf Idea:}
+	Generalize~$\widehat{f^{(n)}}(y)=(iy)^n\widehat f(y)$ as
+	$\widehat{f^{(\alpha)}}(y)=\abs{y}^\alpha\widehat f(y)$.
+
+	{\bf New definition:}
+	$\color{darkred}R_\alpha$ is the ``Fourier multiplier''
+	%with spectrum
+	\begin{center}
+	\fbox{$\ds\color{darkred}\widehat{\R_\alpha}(\y)=\frac1{\Abs{\y}^\alpha}$}
+	\end{center}
+
+	{\bf Formal properties: } (now elementary)\\
+	$$\color{darkred}R_\alpha* R_\beta = R_{\alpha+\beta}$$
+	$$\color{darkred}R_{-2} = \Delta$$
+	$$\color{darkred}R_{2} = \Delta^{-1}$$
+
 
 \end{frame}
 
