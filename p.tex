@@ -96,25 +96,28 @@ INTRO\\
 =====
 
 {\bf Question:}
-Who is the best scientist of all time?
-
+Who is the best scientist of all time?\\
 \pause
 {\bf Answer:}
-Easy! It's Isaac Newton
+Easy! It's Isaac Newton\\
+\begin{center}
+\includegraphics[height=0.3\textheight]{f/newton.png}
+\end{center}
 
 \pause
-\vfill
+%\vfill
 
 {\bf Question:}
-Who is the {\color{blue} second-best} scientist of all time?
-
+Who is the {\color{blue} second-best} scientist of all time?\\
 \pause
 {\bf Answer:}
 Hmmm...\\
 \color{blue}
 \small
-Archimedes, von Neumann, Einstein, Darwin, Pasteur,
-Curie, Galileo, Lavoisier, Maxwell, $\ldots$
+%Archimedes, von Neumann, Einstein, Darwin, Pasteur,
+%Curie, Galileo, Lavoisier, Maxwell, $\ldots$
+\includegraphics[width=\textwidth]{f/scientists1c.png}
+\includegraphics[width=\textwidth]{f/scientists2.png}
 
 \end{frame}
 
@@ -467,7 +470,7 @@ CURIOSITY: FIXED POINTS OF THE FOURIER TRANSFORM\\
 {\color{gray} (Land kernel)}
 
 {\bf d=3:} $\ds \frac1{\sqrt{x^2+y^2+z^2}^3}\qquad$
-{\color{gray} (Newtonian potential)}
+{\color{gray} (Newton-like potential)}
 
 {\bf d=4:} $\ds \frac1{x^2+y^2+z^2+t^2}\qquad$
 {\color{gray} (antilaplacian)}
@@ -484,68 +487,199 @@ $
 
 \end{frame}
 
+% visual examples
+\begin{frame}
+THIS SHOULD BE AN ANIMATION\\
+===========================
+
+\begin{center}
+	\setlength{\tabcolsep}{1pt}
+	\renewcommand{\arraystretch}{0.5}
+	\begin{tabular}{ccc}
+		\includegraphics[width=0.31\textwidth]{o/x_rm2.png}&
+		\includegraphics[width=0.31\textwidth]{o/x_rm1.png}&
+		\includegraphics[width=0.31\textwidth]{o/x_rm05.png}\\
+		\scriptsize ${\color{darkred}R_{-2}} * u=-\Delta u$ &
+		\scriptsize ${\color{darkred}R_{-1}} * u$ &
+		\scriptsize ${\color{darkred}R_{-0.5}} * u$ \\
+		&&\\
+		\includegraphics[width=0.31\textwidth]{f/x.png}&
+		\includegraphics[width=0.31\textwidth]{o/x_r1.png}&
+		\includegraphics[width=0.31\textwidth]{o/x_r2.png}\\
+		\scriptsize ${\color{darkred}R_0} * u = u$ &
+		\scriptsize ${\color{darkred}R_1} * u$ &
+		\scriptsize ${\color{darkred}R_2} * u = -\Delta^{-1} u$ \\
+	\end{tabular}
+\end{center}
+\end{frame}
+
 % commutation with zoom
 \begin{frame}
 COMMUTATION WITH ZOOM\\
 =====================
 
-\end{frame}
+Let~$H_\lambda f(\x) := f(\lambda\x).\quad$
+{\color{gray}(zoom of factor $\lambda$)}
 
+We have:
+\begin{center}
+	\fbox{
+		\(\color{darkred}
+			R_\alpha H_\lambda\ \propto\ H_\lambda R_\alpha
+		\)
+	}
+\end{center}
+
+Contrast it with:
+\begin{center}
+	\fbox{
+		\(\color{darkblue}
+			G_\sigma H_\lambda\ \propto\ H_\lambda G_{\lambda\sigma}
+		\)
+	}
+\end{center}
+
+The {\color{darkblue}Gaussian semigroup} is co-variant with scale.
+
+The {\color{darkblue}Riesz semigroup} is \ul{invariant} with scale.
+
+(It's NOT a  scale-space, each level contains information about all the scales.)
+
+\end{frame}
 
 % continuous interpolation between laplacian, retinex, image, blurry image
 \begin{frame}
-INTERESTING POINTS IN THE RIESZ SEMiGROUP\\
-=========================================
+INTERESTING POINTS IN THE RIESZ SEMIGROUP FOR {\bf d=2}\\
+=====================================================
+
+$\ds\color{darkred}\widehat{R_\alpha}(\y)=\frac1{\Abs{\y}^\alpha}$
+is defined for all~$\alpha\in\R$
+
+\vfill
+
+$\ds\color{darkred}\widehat{R_{-2}}(\y)=\Abs{\y}^2$ is the Laplacian:
+$R_{-2}u=
+\frac{\partial^2}{\partial x^2}u
++\frac{\partial^2}{\partial y^2}u
+$
+
+$\ds\color{darkred}\widehat{R_{-1}}(\y)=\Abs{\y}$
+a sort of ``symmetrized'' first-derivative
+
+$\ds\color{darkred}\widehat{R_0}(\y)=1$
+the identity
+
+\fbox{
+$\ds\color{darkred}\widehat{R_1}(\y)=\frac1{\Abs{\y}}$
+Land's kernel~$\ds\color{darkred} R_1(\x)=\frac1{\Abs{\x}}$
+}
+
+$\ds\color{darkred}\widehat{R_2}(\y)=\Delta^{-1}$ the anti-laplacian
+
+
 
 \end{frame}
 
 
 % first derivatives
-\begin{frame}
-GET FIRST DERIVATIVES FROM THE LAPLACIAN\\
-========================================
-
-\end{frame}
+%\begin{frame}
+%GET FIRST DERIVATIVES FROM THE LAPLACIAN\\
+%========================================
+%
+%\end{frame}
 
 
 % closely related construction: riesz potentials, riesz transform
 % https://en.wikipedia.org/wiki/Riesz_potential
 % https://en.wikipedia.org/wiki/Riesz_transform
-\begin{frame}
-SIMILAR CONSTRUCTIoNS\\
-=====================
-
-\end{frame}
-
-\begin{frame}
-FORMAL DEFINITION, CONSTANTS\\
-============================
-
-\end{frame}
+%\begin{frame}
+%SIMILAR CONSTRUCTIoNS\\
+%=====================
+%
+%\end{frame}
+%
+%\begin{frame}
+%FORMAL DEFINITION, CONSTANTS\\
+%============================
+%
+%\end{frame}
 
 
 % the Land kernel (particular case for σ=1)
 \begin{frame}
-THE LAND KERNEL\\
-===============
+THE LAND KERNEL $\color{darkred}k=R_1$\\
+======================
 
+%\small
+\begin{tabular}{l|l}
+	{\color{darkblue}Gauss} & {\color{darkred}Land} \\
+	\hline
+	&\\
+	{\color{white} v} $\color{darkblue}G_\sigma(x,y)=\frac{1}{2\pi\sigma^2}\exp\frac{x^2+y^2}{-2\sigma^2}$ &
+	{\color{white} v} $\color{darkred}k(x,y)=\frac{1}{\sqrt{x^2+y^2}}$ \\
+	&\\
+	{\color{darkgreen} v} $C^\infty$ function &
+	{\color{red} x} vertical asymptote in 0 \\
+	{\color{darkgreen} v} radial &
+	{\color{darkgreen} v} radial \\
+	{\color{darkgreen} v} séparable &
+	{\color{red} x} non-séparable \\
+	{\color{darkgreen} v} probability density~$1$ &
+	{\color{red} x} locally intégrable \\
+	{\color{red} x} one parameter $\sigma$ &
+	{\color{darkgreen} v} no parameters \\
+	{\color{darkgreen} v} $G_{\sigma}*G_{\mu}=g_{\tiny\sqrt{\sigma^2+\mu^2}}$ &
+	{\color{darkgreen} v} $k*k=\Delta^{-1}$ \\
+	{\color{darkgreen} v} $\widehat{G_\sigma}\ \propto\  G_{\sigma^{-1}}$ &
+	{\color{darkgreen} v} $\widehat{k} = k$ \\
+	%{\color{darkgreen} v} $\Delta g_\sigma = \textrm{chapeau mexicain}$ &
+	%{\color{darkgreen} v} $\Delta k=k^3-\delta\quad \textrm{(retinex)} $ \\
+	{\color{red} x} $G_\sigma*$ non-inversible &
+	{\color{darkgreen} v} $k*$ inversible \\
+	%{\color{darkgreen} v} $g_\sigma*(Z_\lambda u)=Z_\lambda(g_{\sigma\lambda}*u)$ &
+	%{\color{darkgreen} v} $k*(Z_\lambda u) = Z_\lambda(\lambda k* u)$\\
+	{\color{darkgreen} v} \it scale-covariant&
+	{\color{darkgreen} v} \it scale-invariant\\
+	{\color{darkgreen} v} $G_\sigma*u$ scale space &
+	{\color{darkgreen} v} $k*u$ contains all scales \\
+%	{\color{darkgreen} v} temps réel (300 FPS) &
+%	{\color{red} x} assez rapide (15 FPS) \\
+\end{tabular}
 \end{frame}
 
 
 % implementation: imscript (with fft), imscript (with blur), python
-\begin{frame}
+\begin{frame}[fragile]
 IMPLEMENTATION\\
 ==============
 
+{\bf imscript}:\\
+{\color{darkred}\small
+\verb+blur riesz 1.6 barbara.png barbara_R16.png+
+}
+
+\vfill
+
+{\bf plambda}:\\
+{\color{darkred}\small
+\verb+cat barbara.png | fft | plambda ':R 1.6 ^ /' | ifft > barbara_R16.npy+
+}
+
+\vfill
+
+{\bf python}:
+
+\includegraphics[width=0.8\linewidth]{f/pyshot.png}
+
 \end{frame}
 
 
-% comparison table gauss/riesz/land
-\begin{frame}
-COMPARISON TABLE\\
-================
-
-\end{frame}
+%% comparison table gauss/riesz/land
+%\begin{frame}
+%COMPARISON TABLE\\
+%================
+%
+%\end{frame}
 
 
 
@@ -555,6 +689,21 @@ COMPARISON TABLE\\
 APPLICATIONS\\
 ============
 
+3. Applications\\
+$\quad$ 3.1. Retinex\\
+$\quad$ 3.2. Differentiable Poisson editing\\
+$\quad$ 3.3. Shepard interpolation\\
+$\quad$ 3.4. Cloud simulation\\
+
+\vfill
+
+\begin{tabular}{ccc}
+	\includegraphics[width=0.31\linewidth]{f/calanques.jpg}&
+	\includegraphics[width=0.31\linewidth]{f/cloud.png}&
+	\includegraphics[width=0.31\linewidth]{f/composite.jpg}\\
+	original image & riesz clouds & composite\\
+\end{tabular}
+
 \end{frame}
 
 
@@ -563,22 +712,53 @@ APPLICATIONS\\
 MULTI-SCALE RETINEX\\
 ===================
 
+\includegraphics[width=0.61\linewidth]{f/msreti.png}
+
+{\bf Method:}~$u\mapsto SCB(u - G_6*u - G_{36}*u - G_{200}*u)$
+
+\pause
+{\bf Interpretation:}
+This is just a bad approximation of a Riesz kernel~$R_{-0.5}$\\
+	\begin{tabular}{ccc}
+		\includegraphics[width=0.25\textwidth]{f/x.png}&
+		\includegraphics[width=0.25\textwidth]{o/x_rm05.png}&
+		\includegraphics[width=0.25\textwidth]{o/x_rm1.png}\\
+		\scriptsize $u$ &
+		\scriptsize ${\color{darkred}R_{-0.5}} * u$ &
+		\scriptsize ${\color{darkred}R_{-1}} * u$ \\
+	\end{tabular}
+
 \end{frame}
 
 
 % 3.2. - antilaplacian = land * land
 \begin{frame}
-ANTILAPLACIAN AND LAND\\
-======================
+DIFFERENTIABLE POISSON EDITING
+==============================
 
+Poisson editing is a standard technique:\\
+\includegraphics[width=0.56\linewidth]{f/poisbear.png}
+
+
+
+Since~$\Delta^{-1}=k*k=\color{darkred}R_{-2}$, it can be solved by local convolutions using riesz filters
 \end{frame}
 
 
 % 3.3. shepard interpolation
 % https://en.wikipedia.org/wiki/Inverse_distance_weighting
 \begin{frame}
-shepard interpolation (idw)\\
+SHEPARD INTERPOLATION (IDW)\\
 ===========================
+
+Inverse-distance weighted interpolation is a standard technique.
+
+\includegraphics[width=\linewidth]{f/shepard.png}
+
+It is just Riesz (Land) filtering of the function
+\[
+	u(\x)=\sum_{i=1}^n \delta(\x-{\x}_i)
+\]
 
 \end{frame}
 
@@ -588,21 +768,38 @@ shepard interpolation (idw)\\
 SOBOLEV FRACTALS, CLOUD SIMULATION\\
 ==================================
 
+\only<1>{\includegraphics[width=\linewidth]{f/frac1.png}}
+\only<2>{\includegraphics[width=\linewidth]{f/frac2.png}}
+
 \end{frame}
 
 
 % gaussian mandelbrot quote
-\begin{frame}
-CLT AND ITS HEURISTIC CONVERSE\\
-==============================
-
-\end{frame}
+%\begin{frame}
+%CLT AND ITS HEURISTIC CONVERSE\\
+%==============================
+%
+%\end{frame}
 
 
 % conclusion: links to slides, imscript, python function
 \begin{frame}
-CONCLUSIOn\\
+CONCLUSION\\
 ==========
+
+{\bf Open problems:}
+
+1. Find a cool PDE satisfied by the Riesz semigroup.
+
+2. Fast implementation as a linear u-net (ongoing work).
+
+3. Understand why don't everybody uses this.
+
+\vfill
+
+{\bf Motto:}
+
+Images are multi-scale, we must use multi-scale filters!
 
 \end{frame}
 
