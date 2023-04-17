@@ -168,7 +168,7 @@ What is the second-best convolution kernel?\\
 	\fbox{
 		\(\displaystyle\color{darkred}
 	R_\alpha(x,y)\ =\  {\color{pink}k_\alpha}
-	\left(x^2+y^2\right)^{\frac{\sigma-2}2}
+	\left(x^2+y^2\right)^{\frac{\alpha-2}2}
 		\)
 	}&
 	\includegraphics[align=c,width=0.29\textwidth]{f/shot_land.png}
@@ -757,7 +757,7 @@ Inverse-distance weighted interpolation is a standard technique.
 
 It is just Riesz (Land) filtering of the function
 \[
-	u(\x)=\sum_{i=1}^n \delta(\x-{\x}_i)
+	u(\x)=\sum_{i=1}^n a_i \delta(\x-{\x}_i)
 \]
 
 \end{frame}
@@ -770,6 +770,13 @@ SOBOLEV FRACTALS, CLOUD SIMULATION\\
 
 \only<1>{\includegraphics[width=\linewidth]{f/frac1.png}}
 \only<2>{\includegraphics[width=\linewidth]{f/frac2.png}}
+\small
+$$\color{violet}
+f(x)=\sum_n \frac{e^{i\theta_n}}{|n|^{-p}} e^{inx},
+\qquad
+\theta_n\in\mathcal{U}(0,2\pi)
+$$
+
 
 \end{frame}
 
